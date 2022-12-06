@@ -132,4 +132,4 @@ export default () => {
 };
 ```
 
-To discover all the options of React Query Builder, check out the [API documentation](./api/querybuilder).
+To discover all the options of React Query Builder, check out the [API documentation](https://react-querybuilder.js.org/docs/category/api).
