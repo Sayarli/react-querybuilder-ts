@@ -47,7 +47,7 @@ function App() {
     combinator: "and",
     rules: [],
   });
-
+  
   const [queryUNL, setQueryUNL] = useState<RuleGroupType>({
     id: "root",
     combinator: "and",
@@ -201,7 +201,8 @@ function App() {
       />
       <button type="button" onClick={onClickUpdate}>Update</button>
       <pre>{formatQuery(query, {format:'sql', valueProcessor})}</pre>
-      <pre>{formatQuery(query, 'json')}</pre>
+      <pre>{formatQuery(query, {format:'json', valueProcessor})}</pre>
+      <pre>{formatQuery(query, {format:'mongodb', valueProcessor})}</pre>
       <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
         <AgGridReact
           columnDefs={[
