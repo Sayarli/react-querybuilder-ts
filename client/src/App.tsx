@@ -34,7 +34,7 @@ const columnDefsMapper = (f: Field): ColDef => ({
 
 const columnDefs = fields["sales"].map(columnDefsMapper);
 const columnDefsUNL = fields["unlocode"].map(columnDefsMapper);
-
+const columnDefsCypher = fields["cypher"].map(columnDefsMapper)
 function App() {
   const [query, setQuery] = useState<RuleGroupType>({
     id: "root",
@@ -49,6 +49,12 @@ function App() {
   });
   
   const [queryUNL, setQueryUNL] = useState<RuleGroupType>({
+    id: "root",
+    combinator: "and",
+    rules: [],
+  });
+
+  const [queryCypher, setQueryCypher] = useState<RuleGroupType>({
     id: "root",
     combinator: "and",
     rules: [],
@@ -156,6 +162,8 @@ function App() {
     })
   }
 
+  const data = formatQuery(queryCypher, {format:'json', valueProcessor})
+  console.log(data)
   return (
     <>
       <select
@@ -171,12 +179,14 @@ function App() {
       >
         <option value="sales">Sales</option>
         <option value="unlocode">UN/LOCODE</option>
+        <option value="cypher">Cypher</option>
       </select>
       <QueryBuilder
         fields={fields[dataset]}
-        onQueryChange={(q) => (dataset === "sales" ? setQuery : setQueryUNL)(q)}
-        query={dataset === "sales" ? query : queryUNL}
-        getOperators={getOperators}
+        onQueryChange={(q) => (dataset === "sales" ? setQuery : (dataset === "cypher" ? setQueryCypher : setQueryUNL)
+        )(q)}
+        query={dataset === "sales" ? query : (dataset === "cypher" ? queryCypher : queryUNL)}
+        getOperators={getOperators} 
         translations={translations[language]}
         combinators={combinators[language]}
         controlElements={{
@@ -200,9 +210,7 @@ function App() {
         }}
       />
       <button type="button" onClick={onClickUpdate}>Update</button>
-      <pre>{formatQuery(query, {format:'sql', valueProcessor})}</pre>
-      <pre>{formatQuery(query, {format:'json', valueProcessor})}</pre>
-      <pre>{formatQuery(query, {format:'mongodb', valueProcessor})}</pre>
+      <pre>{formatQuery(queryCypher, {format:'json', valueProcessor})}</pre>
       <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
         <AgGridReact
           columnDefs={[
@@ -212,7 +220,7 @@ function App() {
               checkboxSelection: true,
               width: 40,
             },
-            ...(dataset === "sales" ? columnDefs : columnDefsUNL),
+            ...(dataset === "sales" ? columnDefs : (dataset === "cypher" ? columnDefsCypher : columnDefsUNL)),
           ]}
           onGridReady={(gre) => setGridApi(gre.api)}
           rowData={dataset === "sales" ? rawData : rawDataUNL}
