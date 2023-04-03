@@ -298,6 +298,94 @@ unlocode: [
     inputType: "number",
     type: "rightAligned",
   },
+], 
+cypher:[
+  {
+    name: "order_id",
+    label: "Order ID",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "region",
+    label: "Region",
+    valueEditorType: "select",
+    values: regions,
+  },
+  {
+    name: "country",
+    label: "Country",
+  },
+  {
+    name: "item_type",
+    label: "Item Type",
+    valueEditorType: "select",
+    values: itemTypes,
+  },
+  {
+    name: "sales_channel",
+    label: "Sales Channel",
+    valueEditorType: "select",
+    values: [
+      { name: "Offline", label: "Offline" },
+      { name: "Online", label: "Online" },
+    ],
+  },
+  {
+    name: "order_priority",
+    label: "Order Priority",
+    valueEditorType: "select",
+    values: priorities,
+    refData: prioritiesRefData,
+  },
+  {
+    name: "order_date",
+    label: "Order Date",
+    datatype: "date",
+    cellRenderer: dateCellRenderer,
+  },
+  {
+    name: "ship_date",
+    label: "Ship Date",
+    datatype: "date",
+    cellRenderer: dateCellRenderer,
+  },
+  {
+    name: "units_sold",
+    label: "Units Sold",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "unit_price",
+    label: "Unit Price",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "unit_cost",
+    label: "Unit Cost",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "total_revenue",
+    label: "Total Revenue",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "total_cost",
+    label: "Total Cost",
+    inputType: "number",
+    type: "rightAligned",
+  },
+  {
+    name: "total_profit",
+    label: "Total Profit",
+    inputType: "number",
+    type: "rightAligned",
+  },
 ],
 };
 
