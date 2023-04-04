@@ -31,6 +31,10 @@ const statusValues = [
   },
 ];
 
+const cypherLabels = [
+  
+]
+
 const statusValuesRefData: Record<string, string> = {};
 statusValues.forEach((sv) => (statusValuesRefData[sv.name] = sv.label));
 
@@ -303,28 +307,33 @@ cypher:[
   {
     name: "order_id",
     label: "Order ID",
+    neoLabel: "Order",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "region",
     label: "Region",
+    neoLabel: "Order",
     valueEditorType: "select",
     values: regions,
   },
   {
     name: "country",
     label: "Country",
+    neoLabel: "Order",
   },
   {
     name: "item_type",
     label: "Item Type",
+    neoLabel: "Order",
     valueEditorType: "select",
     values: itemTypes,
   },
   {
     name: "sales_channel",
     label: "Sales Channel",
+    neoLabel:"Total",
     valueEditorType: "select",
     values: [
       { name: "Offline", label: "Offline" },
@@ -335,54 +344,63 @@ cypher:[
     name: "order_priority",
     label: "Order Priority",
     valueEditorType: "select",
+    neoLabel:"Order",
     values: priorities,
     refData: prioritiesRefData,
   },
   {
     name: "order_date",
     label: "Order Date",
+    neoLabel:"Order",
     datatype: "date",
     cellRenderer: dateCellRenderer,
   },
   {
     name: "ship_date",
     label: "Ship Date",
+    neoLabel:"Total",
     datatype: "date",
     cellRenderer: dateCellRenderer,
   },
   {
     name: "units_sold",
     label: "Units Sold",
+    neoLabel:"Unit",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "unit_price",
     label: "Unit Price",
+    neoLabel:"Unit",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "unit_cost",
     label: "Unit Cost",
+    neoLabel:"Unit",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "total_revenue",
     label: "Total Revenue",
+    neoLabel:"Total",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "total_cost",
     label: "Total Cost",
+    neoLabel:"Total",
     inputType: "number",
     type: "rightAligned",
   },
   {
     name: "total_profit",
     label: "Total Profit",
+    neoLabel:"Total",
     inputType: "number",
     type: "rightAligned",
   },

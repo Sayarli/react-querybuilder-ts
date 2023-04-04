@@ -31,10 +31,19 @@ const columnDefsMapper = (f: Field): ColDef => ({
   field: f.name,
   headerName: f.label,
 });
+const columnDefsMapperCypher = (f: Field): ColDef => ({
+  field: f.name,
+  headerName: f.label
+});
+
+const cypher = (f: Field) =>({
+  a: f.neoLabel
+
+})
 
 const columnDefs = fields["sales"].map(columnDefsMapper);
 const columnDefsUNL = fields["unlocode"].map(columnDefsMapper);
-const columnDefsCypher = fields["cypher"].map(columnDefsMapper)
+const columnDefsCypher = fields["cypher"].map(columnDefsMapperCypher)
 function App() {
   const [query, setQuery] = useState<RuleGroupType>({
     id: "root",
@@ -59,7 +68,7 @@ function App() {
     combinator: "and",
     rules: [],
   });
-
+  console.log(fields["cypher"])
   const [language, setLanguage] = useState<Language>("en");
   const [rawData, setRawData] = useState<any[]>([]);
   const [rawDataUNL, setRawDataUNL] = useState<any[]>([]);
@@ -161,7 +170,7 @@ function App() {
       })
     })
   }
-
+  console.log(fields[dataset][0]["neoLabel"])
   const data = formatQuery(queryCypher, {format:'json', valueProcessor})
   console.log(data)
   return (
@@ -177,10 +186,12 @@ function App() {
         value={dataset}
         onChange={(e) => setDataset(e.target.value as Dataset)}
       >
+      
         <option value="sales">Sales</option>
         <option value="unlocode">UN/LOCODE</option>
         <option value="cypher">Cypher</option>
       </select>
+      {console.log(queryCypher)}
       <QueryBuilder
         fields={fields[dataset]}
         onQueryChange={(q) => (dataset === "sales" ? setQuery : (dataset === "cypher" ? setQueryCypher : setQueryUNL)
