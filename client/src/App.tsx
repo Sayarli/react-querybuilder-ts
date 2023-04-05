@@ -23,6 +23,8 @@ import { parseISO, addDays } from "date-fns";
 import getOperatorsForUpdate from "./getOperatorsForUpdate";
 import ValueEditorForBulkEdit from "./ValueEditorForBulkEdit";
 import valueProcessor from './valueProcessor';
+import getLabel from './getLabel';
+import CreateQuery from "./CreateQuery";
 
 // const processChartData = (chartData: any[]) =>
 //   chartData.map((cd) => ({ ...cd, order_month: parseISO(cd.order_month) }));
@@ -173,6 +175,11 @@ function App() {
   console.log(fields[dataset][0]["neoLabel"])
   const data = formatQuery(queryCypher, {format:'json', valueProcessor})
   console.log(data)
+
+  let newQuery = ""
+    
+    newQuery = CreateQuery(queryCypher)
+  console.log(newQuery)
   return (
     <>
       <select
@@ -191,7 +198,7 @@ function App() {
         <option value="unlocode">UN/LOCODE</option>
         <option value="cypher">Cypher</option>
       </select>
-      {console.log(queryCypher)}
+      {console.log(getLabel(queryCypher))}
       <QueryBuilder
         fields={fields[dataset]}
         onQueryChange={(q) => (dataset === "sales" ? setQuery : (dataset === "cypher" ? setQueryCypher : setQueryUNL)
