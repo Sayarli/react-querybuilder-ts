@@ -23,7 +23,6 @@ import { parseISO, addDays } from "date-fns";
 import getOperatorsForUpdate from "./getOperatorsForUpdate";
 import ValueEditorForBulkEdit from "./ValueEditorForBulkEdit";
 import valueProcessor from './valueProcessor';
-import getLabel from './getLabel';
 import CreateQuery from "./CreateQuery";
 
 // const processChartData = (chartData: any[]) =>
@@ -172,14 +171,8 @@ function App() {
       })
     })
   }
-  console.log(fields[dataset][0]["neoLabel"])
-  const data = formatQuery(queryCypher, {format:'json', valueProcessor})
-  console.log(data)
 
-  let newQuery = ""
-    
-    newQuery = CreateQuery(queryCypher)
-  console.log(newQuery)
+
   return (
     <>
       <select
@@ -198,7 +191,6 @@ function App() {
         <option value="unlocode">UN/LOCODE</option>
         <option value="cypher">Cypher</option>
       </select>
-      {console.log(getLabel(queryCypher))}
       <QueryBuilder
         fields={fields[dataset]}
         onQueryChange={(q) => (dataset === "sales" ? setQuery : (dataset === "cypher" ? setQueryCypher : setQueryUNL)
@@ -213,9 +205,11 @@ function App() {
           valueEditor: ValueEditor,
         }}
       />
+      
       <button onClick={dataset === "sales" ? getData : getDataUNL}>
         Get Data
       </button>
+      
       <QueryBuilder
         fields={fields[dataset]}
         onQueryChange={q => setUpdateQuery(q)}
@@ -228,7 +222,8 @@ function App() {
         }}
       />
       <button type="button" onClick={onClickUpdate}>Update</button>
-      <pre>{formatQuery(queryCypher, {format:'json', valueProcessor})}</pre>
+      <pre>{CreateQuery(queryCypher)}</pre>
+      <pre>{formatQuery(queryCypher, {format:'sql', valueProcessor})}</pre>
       <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
         <AgGridReact
           columnDefs={[
