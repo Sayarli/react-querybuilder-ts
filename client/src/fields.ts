@@ -31,9 +31,6 @@ const statusValues = [
   },
 ];
 
-const cypherLabels = [
-  
-]
 
 const statusValuesRefData: Record<string, string> = {};
 statusValues.forEach((sv) => (statusValuesRefData[sv.name] = sv.label));
