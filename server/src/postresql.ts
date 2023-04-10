@@ -30,7 +30,7 @@ class PostgreSQL implements IDatabase {
         const order = this.sort ? `ORDER BY ${this.sort}` : "";
         return `SELECT * FROM ${this.db} WHERE ${whereClause} `+ order;
         //Cypher Version
-        //return `MATCH ${this.db}.charAt(0):${this.db} WHERE ${whereClause} + order`
+        //return `MATCH ${this.db.charAt(0).toLowerCase()}:${this.db} WHERE ${whereClause} + order`
     }
 }
 
