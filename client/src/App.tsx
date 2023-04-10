@@ -23,7 +23,7 @@ import { parseISO, addDays } from "date-fns";
 import getOperatorsForUpdate from "./getOperatorsForUpdate";
 import ValueEditorForBulkEdit from "./ValueEditorForBulkEdit";
 import valueProcessor from './valueProcessor';
-import CreateQuery from "./CreateQuery";
+import CreateQuery from "./CreateCypherQuery";
 
 // const processChartData = (chartData: any[]) =>
 //   chartData.map((cd) => ({ ...cd, order_month: parseISO(cd.order_month) }));

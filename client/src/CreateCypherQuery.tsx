@@ -1,7 +1,7 @@
 import { DataProps, RulesProps } from "./interface";
 import checkRules from "./checkRules";
 
-function CreateQuery(data:DataProps|RulesProps){
+function CreateCypherQuery(data:DataProps|RulesProps){
   let query = ""
 
   
@@ -13,7 +13,7 @@ function CreateQuery(data:DataProps|RulesProps){
     query += `\nWHERE `
     data.rules?.map((rule, index) => {
       
-      query += `${(index > 0 && !rule.rules) ? data.combinator?.toUpperCase():""} ${CreateQuery(rule)}`;
+      query += `${(index > 0 && !rule.rules) ? data.combinator?.toUpperCase():""} ${CreateCypherQuery(rule)}`;
     })
       
     }
@@ -21,4 +21,4 @@ function CreateQuery(data:DataProps|RulesProps){
     return query
     
   }
-export default CreateQuery  
+export default CreateCypherQuery  
