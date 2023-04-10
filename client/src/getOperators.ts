@@ -13,7 +13,7 @@ const getOperators = (field: string): NameLabelPair[] => {
         { name: "<=", label: "is on or before" },
         { name: ">=", label: "is on or after" },
         { name: "null", label: "is blank" },
-        { name: "notNull", label: "is not blank" },
+        { name: "not null", label: "is not blank" },
       ];
 
     case "port":
@@ -44,8 +44,8 @@ const getOperators = (field: string): NameLabelPair[] => {
         { name: ">", label: "is greater than" },
         { name: "<=", label: "is less than or equal to" },
         { name: ">=", label: "is greater than or equal to" },
-        { name: "null", label: "is blank" },
-        { name: "notNull", label: "is not blank" },
+        { name: "is null", label: "is blank" },
+        { name: "is not null", label: "is not blank" },
       ];
 
     default:

@@ -29,6 +29,8 @@ class PostgreSQL implements IDatabase {
         const whereClause = this.processSQL(this.query.sql);
         const order = this.sort ? `ORDER BY ${this.sort}` : "";
         return `SELECT * FROM ${this.db} WHERE ${whereClause} `+ order;
+        //Cypher Version
+        //return `MATCH ${this.db}.charAt(0):${this.db} WHERE ${whereClause} + order`
     }
 }
 
