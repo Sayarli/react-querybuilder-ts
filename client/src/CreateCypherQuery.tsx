@@ -3,9 +3,7 @@ import checkRules from "./checkRules";
 
 function CreateCypherQuery(data:DataProps|RulesProps){
   let query = ""
-
   
-
   if(data.rules?.length === 0 || !data.rules){
     query += checkRules(data);
   }
